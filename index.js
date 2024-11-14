@@ -197,6 +197,22 @@ for(let i =0 ; i <pageNumbers.length ; i ++)
        pageNumber=parseInt(pageNumbers[i].textContent);
        getCharacters(pageNumber)
        selectPage();
+       if(i===4){
+        if(parseInt(pageNumbers[pageNumbers.length-1].textContent)<maxPages){
+            for(let i =0 ; i < pageNumbers.length; i++){
+                pageNumbers[i].textContent = parseInt(pageNumbers[i].textContent)+1;
+                
+            }
+           selectPage();
+        } 
+       }else if(i===0){
+        if(parseInt(pageNumbers[0].textContent)>1){
+            pageNumbers.forEach((el)=>{
+                el.textContent=parseInt(el.textContent)-1;  
+            })
+            selectPage();
+        }
+       }
     })
 }
 
