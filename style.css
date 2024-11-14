@@ -156,7 +156,7 @@ body{
     background-color: rgba(50, 53, 56);
 }
 .page-selector{ 
-    width: 170px;
+    width: 370px;
     height: 60px;
     margin-top: 25px;
     background-color: rgba(240, 255, 255, 0.469);
@@ -192,6 +192,10 @@ body{
 }
 .goup:hover{
     cursor: pointer;
+}
+.selected{ 
+    color:azure; 
+    background-color: green;
 }
 *{
     font-family: "main";

@@ -3,15 +3,18 @@ const maxPages =42;
 const pageSelector= document.querySelector('.page-selector');
 const goBack= document.querySelector('.goback');
 const goUp= document.querySelector('.goup');
-const pageNumber= document.querySelector('.page-number');
+const pageNumbers= document.querySelectorAll('.page-number')
+// const pageNumber= document.querySelector('.page-number');
 //pages 42
-let startPageNumber=1;
+let pageNumber=1;
 let likedCards = []; 
 if(!window.localStorage.getItem('likedCards')){
     window.localStorage.setItem("likedCards",[])
 }else{ 
    likedCards= window.localStorage.getItem('likedCards')
 }
+
+
 
 const GET_ONE ="https://rickandmortyapi.com/api/character/1";//umesto jedan ide num koji nam treba
 // JSON.stringify i JSON.parse  i na
@@ -103,7 +106,7 @@ function makeCard(card){
         window.localStorage.removeItem('showDetails')
         window.localStorage.setItem("showDetails",JSON.stringify(card));
         window.localStorage.removeItem('pageNumber')
-        window.localStorage.setItem("pageNumber",parseInt(pageNumber.textContent));
+        window.localStorage.setItem("pageNumber",pageNumber);
         location.replace('./info-page.html')
       })
 }
@@ -124,9 +127,30 @@ function formCards(characters){
 window.addEventListener('load', ()=>{
     console.log("aaaaaaa")
     if(window.localStorage.getItem('pageNumber')){
-        startPageNumber=window.localStorage.getItem('pageNumber');
-        pageNumber.textContent=startPageNumber;
-        getCharacters(startPageNumber);
+        pageNumber=parseInt(window.localStorage.getItem('pageNumber'));
+        // pageNumber.textContent=startPageNumber;
+       if(pageNumber>=3 && pageNumber<=40 ){
+         pageNumbers[0].textContent=pageNumber-2;
+        pageNumbers[1].textContent=pageNumber-1;
+        pageNumbers[2].textContent=pageNumber;
+        pageNumbers[3].textContent=pageNumber+1;
+        pageNumbers[4].textContent=pageNumber+2;
+       }else if(pageNumber<3){
+        pageNumbers[0].textContent=1;
+        pageNumbers[1].textContent=2;
+        pageNumbers[2].textContent=3;
+        pageNumbers[3].textContent=4;
+        pageNumbers[4].textContent=5;
+       }else if(pageNumber>40 ){
+        pageNumbers[0].textContent=38;
+        pageNumbers[1].textContent=39;
+        pageNumbers[2].textContent=40;
+        pageNumbers[3].textContent=41;
+        pageNumbers[4].textContent=42;
+       }
+       
+        selectPage();
+        getCharacters(pageNumber);
     }else{ 
         getCharacters(1);
     }
@@ -134,62 +158,68 @@ window.addEventListener('load', ()=>{
     
 })
 
-
+function selectPage(){ 
+    pageNumbers.forEach( (el)=>{
+        if(pageNumber===parseInt(el.textContent)){
+            el.classList.add('selected')
+        }else{ 
+            el.classList.remove('selected')
+        }
+    })
+}
 
 
 
 
 goBack.addEventListener('click',()=>{
-    if(parseInt(pageNumber.textContent)>1){
-        pageNumber.textContent=parseInt(pageNumber.textContent)-1;  
-       
-        getCharacters(parseInt(pageNumber.textContent));
-       
+    if(parseInt(pageNumbers[0].textContent)>1){
+        pageNumbers.forEach((el)=>{
+            el.textContent=parseInt(el.textContent)-1;  
+        })
+        selectPage();
     }
 })
 goUp.addEventListener('click',()=>{
-    if(parseInt(pageNumber.textContent)<maxPages){
-        pageNumber.textContent=parseInt(pageNumber.textContent)+1;
-      
-        getCharacters(parseInt(pageNumber.textContent));
+    if(parseInt(pageNumbers[pageNumbers.length-1].textContent)<maxPages){
+            for(let i =0 ; i < pageNumbers.length; i++){
+                pageNumbers[i].textContent = parseInt(pageNumbers[i].textContent)+1;
+                
+            }
+           selectPage();
     } 
     
 })
 
+
+for(let i =0 ; i <pageNumbers.length ; i ++)
+{
+    pageNumbers[i].addEventListener('click',()=>{
+       pageNumber=parseInt(pageNumbers[i].textContent);
+       getCharacters(pageNumber)
+       selectPage();
+    })
+}
+
+
+
+
+
+
 const getToFirstPage = document.querySelector(".header > p"); 
 getToFirstPage.addEventListener('click', ()=>{
-    pageNumber.textContent=1;
+    pageNumber = 1;
+    selectPage();
+    
     getCharacters(1);
 })
+//new paging system
 
-// for(let i =0 ;  i< likeButtons.length; i ++){ 
-    // likeButtons[1].addEventListener('click',()=>{
-    //     console.log(i)
-    // })
-// }
+// treba mi selected page da svetli tj dobija svoju classu 
+// treba da se pojavljuju strane levo desno puno pravila isk isk
 
 
-// let cardsRemove= document.querySelectorAll('.card');
-// console.log(cardsRemove)
 
-// const buttonss= document.querySelectorAll('.body-div > .wrapper > .card > div > button ');
-// console.log(buttonss)
-// const buttons = document.querySelectorAll(".like-btn");
-// console.log(buttons)
-// const clsBtn = document.getElementsByClassName('like-btn')
-// console.log(clsBtn);
 
-// clsBtn[1]?.addEventListener('click',()=>{
-//     console.log("a")
-// })
-// for(let i=0; i < likeButtons.length; i++){ 
-//     console.log("dsadasdas")
-//     likeButtons[i].addEventListener('click', ()=>{
-//         console.log(i)
-        
-      
-//     })
-// }
 
 
 
