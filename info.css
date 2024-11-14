@@ -41,6 +41,7 @@ body{
     margin-left: 70px;
     margin-bottom: 50px;
     text-shadow: 0 0 8px green, 0 0 10px greenyellow;
+    letter-spacing: 3px;
 }
 .txt{ 
     color:azure;

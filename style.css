@@ -31,6 +31,7 @@ body{
     font-size: xx-large;
     margin-left: 50px;
     text-shadow: 0 0 8px green, 0 0 10px greenyellow;
+    letter-spacing: 5px;
 }
 .wrapper{ 
     width: 75vw;
