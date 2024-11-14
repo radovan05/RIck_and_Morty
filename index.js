@@ -156,6 +156,12 @@ goUp.addEventListener('click',()=>{
     
 })
 
+const getToFirstPage = document.querySelector(".header > p"); 
+getToFirstPage.addEventListener('click', ()=>{
+    pageNumber.textContent=1;
+    getCharacters(1);
+})
+
 // for(let i =0 ;  i< likeButtons.length; i ++){ 
     // likeButtons[1].addEventListener('click',()=>{
     //     console.log(i)
