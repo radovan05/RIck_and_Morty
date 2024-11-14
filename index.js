@@ -166,6 +166,8 @@ function selectPage(){
             el.classList.remove('selected')
         }
     })
+    window.localStorage.removeItem('pageNumber')
+        window.localStorage.setItem("pageNumber",pageNumber);
 }
 
 
@@ -224,8 +226,14 @@ for(let i =0 ; i <pageNumbers.length ; i ++)
 const getToFirstPage = document.querySelector(".header > p"); 
 getToFirstPage.addEventListener('click', ()=>{
     pageNumber = 1;
-    selectPage();
     
+    pageNumbers[0].textContent=1;
+        pageNumbers[1].textContent=2;
+        pageNumbers[2].textContent=3;
+        pageNumbers[3].textContent=4;
+        pageNumbers[4].textContent=5;
+        selectPage();
+        
     getCharacters(1);
 })
 //new paging system
