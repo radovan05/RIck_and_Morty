@@ -2,6 +2,7 @@
     margin: 0; 
     padding: 0 ; 
     border: 0;
+    user-select: none;
 }
 body{ 
     background-image: url("./pic/bg-img.jpg") ;
@@ -32,6 +33,9 @@ body{
     margin-left: 50px;
     text-shadow: 0 0 8px green, 0 0 10px greenyellow;
     letter-spacing: 5px;
+}
+.header > p:hover { 
+    cursor: pointer;
 }
 .wrapper{ 
     width: 75vw;
@@ -89,6 +93,9 @@ body{
     
 
 }
+.card > img:hover{ 
+    cursor: pointer;
+}
 .card > div{ 
     width: 100%;
     height: 80px;
@@ -123,7 +130,7 @@ body{
     height: 30px;
     border-radius: 15px;
     border: 2px solid green;
-
+    cursor: pointer;
     color: azure; 
     background-color: green;
 }
@@ -141,7 +148,7 @@ body{
     height: 30px;
     border-radius: 15px;
     border: 2px solid green;
-
+    cursor: pointer;
     color: azure; 
     background-color: green;
 }
